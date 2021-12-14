@@ -11,6 +11,7 @@ function Renderboard(numRows,numCols){
         for (let j=0;j<numCols;j++) {
             let cellEl =document.createElement("div")
             cellEl.className="cell"
+
             let tdEl =document.createElement("td")
             tdEl.append(cellEl)
 
@@ -21,4 +22,4 @@ function Renderboard(numRows,numCols){
     }
 }
 
-Renderboard(20,15);
+Renderboard(15,20);
