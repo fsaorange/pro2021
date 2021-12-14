@@ -1,11 +1,10 @@
 
 .cell {
-background-color:rgb(202, 40, 40);
-width: 1.5em;
-height: 1.5em;
+background-color:#ccc;
+width: 1.5px;
+height: 1.5px;
 
 }
-
 
 body {
     width: 100vw;
