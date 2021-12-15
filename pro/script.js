@@ -83,5 +83,6 @@ function Initialize(numRows,numCols,numMines){
     return grid;
 }
 
-let grid = Initialize(9,9,9);
+
+let grid = Initialize(9,10,9);
 Renderboard(9,9,grid);
