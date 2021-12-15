@@ -20,5 +20,14 @@ body {
     background-color:#ccc;
     width: 1.5em;
     height: 1.5em;
+
+    border-style: outset;
+
     text-align: center;
     }
+
+.clear {
+    border-style: solid;
+    border-color: #eee;
+    background-color: #eee;
+}

@@ -14,6 +14,7 @@ function Renderboard(numRows,numCols,grid){
             cellEl.innerText=grid[i][j].count;
 
             let tdEl =document.createElement("td")
+            tdEl.className="clear"
             tdEl.append(cellEl);
 
             trEl.append(tdEl);
@@ -34,7 +35,8 @@ function Initialize(numRows,numCols,numMines){
         grid[i] = new Array(numCols);
         for (let j=0;j<numCols;j++){
             grid[i][j]={
-                count:0
+                clear = false,
+                count : 0
             };
         }
     }
@@ -51,6 +53,7 @@ function Initialize(numRows,numCols,numMines){
     }
         //计算有雷的周边为0的周边雷数
         for (let [row,col] of mines){
+            console.log("mines:",row,col)
             for (let [drow,dcol] of directions){
                 let cellRow = row+drow;
                 let cellCol = col+dcol;
@@ -80,5 +83,5 @@ function Initialize(numRows,numCols,numMines){
     return grid;
 }
 
-let grid = Initialize(15,20,50);
-Renderboard(15,20,grid);
+let grid = Initialize(9,9,9);
+Renderboard(9,9,grid);
