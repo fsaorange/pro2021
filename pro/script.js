@@ -11,7 +11,7 @@ function Renderboard(numRows,numCols,grid){
         for (let j=0;j<numCols;j++) {
             let cellEl =document.createElement("div")
             cellEl.className="cell"
-            cellEl.innerText=grid[i][j];
+            cellEl.innerText=grid[i][j].count;
 
             let tdEl =document.createElement("td")
             tdEl.append(cellEl);
@@ -33,7 +33,9 @@ function Initialize(numRows,numCols,numMines){
     for (let i=0;i<numRows;i++){
         grid[i] = new Array(numCols);
         for (let j=0;j<numCols;j++){
-            grid[i][j]=0;
+            grid[i][j]={
+                count:0
+            };
         }
     }
 
@@ -44,7 +46,7 @@ function Initialize(numRows,numCols,numMines){
         let col = cellMl % numCols
         console.log(cellMl,row,col);
 
-        grid[row][col]=-1
+        grid[row][col].count=-1
         mines.push([row,col]);
     }
         //计算有雷的周边为0的周边雷数
@@ -55,21 +57,28 @@ function Initialize(numRows,numCols,numMines){
                 if  (cellRow < 0 || cellCol < 0|| cellRow >= numRows || cellCol >= numCols){
                     continue;
                 }
-                if (grid[cellRow][cellCol] === 0){
+                if (grid[cellRow][cellCol].count === 0){
+                    console.log("target",cellRow,cellCol);
                     let count = 0
                     for (let [arow,acol] of directions){
-                        if (grid[cellRow+ arow][cellCol + acol] === -1){
+                        let tunderRow = cellRow+arow;
+                        let tunderCol = cellCol+acol;
+                        if  (tunderRow < 0 || tunderCol < 0|| tunderRow >= numRows || tunderCol >= numCols){
+                            continue;
+                        }
+                        if (grid[tunderRow][tunderCol].count === -1){
+                            console.log("danger",tunderRow,tunderCol);
                             count += 1;
                         }
                     }
                     if (count > 0){
-                        grid[cellRow][cellCol] = count
+                        grid[cellRow][cellCol].count = count
                     }
                 }
-            }
+            }   
         }
-    return grid;;
+    return grid;
 }
 
-let grid = Initialize(15,20,20);
+let grid = Initialize(15,20,50);
 Renderboard(15,20,grid);
