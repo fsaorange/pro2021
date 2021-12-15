@@ -33,6 +33,7 @@ function Renderboard(numRows,numCols,grid){
                     cellEl.classList.add("clear")
                     grid[i][j].cellEl.innerText=grid[i][j].count;
                 }
+                checkAllClear(grid)
                 //cellEl.classList.add("clear")
             });
 
@@ -150,5 +151,33 @@ function explode(grid, row, col, numRows, numCols) {
     }
 }
 
-let grid = Initialize(9,9,20);
+function checkAllClear(grid) {
+    for (let row = 0; row < grid.length; row ++) {
+        let gridRow = grid[row];
+        for (let col = 0; col < gridRow.length; col ++) {
+            let cell = gridRow[col];
+            if (cell.count !== -1 && !cell.clear) {
+                return false;
+            }
+        }
+    }
+
+    for (let row = 0; row < grid.length; row ++) {
+        let gridRow = grid[row];
+        for (let col = 0; col < gridRow.length; col ++) {
+            let cell = gridRow[col];
+
+            if (cell.count === -1) {
+                cell.cellEl.classList.add('landmine');
+            }
+
+            cell.cellEl.classList.add("success");
+        }
+    }
+
+    return true;
+}
+
+
+let grid = Initialize(9,9,1);
 Renderboard(9,9,grid);

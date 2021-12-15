@@ -41,3 +41,7 @@ body {
 .cell.exploded {
     background-color:red;
 }
+
+.cell.landmine.success {
+    background-color: blue;
+}
