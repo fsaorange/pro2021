@@ -11,10 +11,14 @@ function Renderboard(numRows,numCols,grid){
         for (let j=0;j<numCols;j++) {
             let cellEl =document.createElement("div")
             cellEl.className="cell"
+
             cellEl.innerText=grid[i][j].count;
 
+            cellEl.addEventListener("click",(e) => {
+                cellEl.classList.add("clear")
+            });
+
             let tdEl =document.createElement("td")
-            tdEl.className="clear"
             tdEl.append(cellEl);
 
             trEl.append(tdEl);
@@ -35,7 +39,7 @@ function Initialize(numRows,numCols,numMines){
         grid[i] = new Array(numCols);
         for (let j=0;j<numCols;j++){
             grid[i][j]={
-                clear = false,
+                clear : false,
                 count : 0
             };
         }
@@ -83,6 +87,5 @@ function Initialize(numRows,numCols,numMines){
     return grid;
 }
 
-
-let grid = Initialize(9,10,9);
+let grid = Initialize(9,9,9);
 Renderboard(9,9,grid);

@@ -24,6 +24,8 @@ body {
     border-style: outset;
 
     text-align: center;
+
+    user-select: none;
     }
 
 .clear {
