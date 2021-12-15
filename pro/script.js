@@ -13,27 +13,31 @@ function Renderboard(numRows,numCols,grid){
             cellEl.className="cell"
 
             grid[i][j].cellEl = cellEl;
-
-            if (grid[i][j].count === -1) {
-                cellEl.innerText = "*"
-            } else { 
-                cellEl.innerText=grid[i][j].count;
-            }   
-
+ 
+            //if ( grid[i][j].count === -1) {
+            //    cellEl.innerText = "*";    
+            //} else {
+            //    cellEl.innerText = grid[i][j].count;
+            //}
+          
 
             cellEl.addEventListener("click",(e) => {
-                if (grid[i][j].count === 0) {
-
-                    searchClearArea(grid,i,j,numRows,numCols);
+                if (grid[i][j].count === -1) {
+                    explode(grid, i, j, numRows, numCols)
                     return;
-
+                } 
+                if (grid[i][j].count === 0){
+                    searchClearArea(grid,i,j,numRows,numCols);
+                } else if (grid[i][j].count > 0){
+                    grid[i][j].clear = true;
+                    cellEl.classList.add("clear")
+                    grid[i][j].cellEl.innerText=grid[i][j].count;
                 }
                 //cellEl.classList.add("clear")
             });
 
             let tdEl =document.createElement("td")
             tdEl.append(cellEl);
-
             trEl.append(tdEl);
         }
 
@@ -100,29 +104,48 @@ function Initialize(numRows,numCols,numMines){
     return grid; 
 }
 
-function searchClearArea(grid,row,col,numRows,numCols) {
+function searchClearArea(grid, row, col, numRows, numCols) {
     let gridCell = grid[row][col];
-    gridCell.clear =true;
+    gridCell.clear = true;
     gridCell.cellEl.classList.add("clear");
 
-    for (let [drow,dcol] of directions){
-        let cellRow = row+drow;
-        let cellCol = col+dcol;
-        if  (cellRow < 0 || cellCol < 0|| cellRow >= numRows || cellCol >= numCols){
+    for (let [drow, dcol] of directions) {
+        let cellRow = row + drow;
+        let cellCol = col + dcol;
+        console.log(cellRow, cellCol, numRows, numCols);
+        if (cellRow < 0 || cellRow >= numRows || cellCol < 0 || cellCol >= numCols) {
             continue;
         }
-        
+
         let gridCell = grid[cellRow][cellCol];
+
+        console.log(cellRow, cellCol, gridCell);
         
         if (!gridCell.clear) {
             gridCell.clear = true;
             gridCell.cellEl.classList.add("clear");
+            if (gridCell.count === 0) {
+                searchClearArea(grid, cellRow, cellCol, numRows, numCols);
+            } else if (gridCell.count > 0) {
+                gridCell.cellEl.innerText = gridCell.count;
+            } 
+        }
+    }
+}
 
-            if (gridCell.count === 0 ) {
-            searchClearArea(grid,cellRow,cellCol,numRows,numCols)
-            } else if (gridCell.count > 0){
-                gridCell.cellEl.innerText = gridCell.count
-            }            
+
+function explode(grid, row, col, numRows, numCols) {
+    grid[row][col].cellEl.classList.add("exploded");
+
+    for (let cellRow = 0; cellRow < numRows; cellRow++) {
+        for (let cellCol = 0; cellCol < numCols; cellCol++) {
+            let cell =  grid[cellRow][cellCol];
+            cell.clear = true;
+            cell.cellEl.classList.add('clear');
+
+            if (cell.count === -1) {
+                cell.cellEl.classList.add('landmine');
+            }
         }
     }
 }

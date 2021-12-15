@@ -33,3 +33,11 @@ body {
     border-color: #eee;
     background-color: #eee;
 }
+
+.cell.landmine {
+    background-color: rgb(230, 119, 15);
+}
+
+.cell.exploded {
+    background-color:red;
+}
