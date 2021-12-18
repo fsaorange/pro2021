@@ -221,6 +221,8 @@ function searchsafeArea(grid, row, col, numRows, numCols) {
             } 
         }
     }
+    //初始化的时候就赢了
+    checkAllClear(grid)
 }
 
 //炸弹爆炸
@@ -280,7 +282,7 @@ function checkAllClear(grid) {
     setTimeout(foo,500)
     function foo(){
     let i = document.getElementById('timeValue').value;
-    alert("win!!!" + "\n" + "用时" + i );
+    alert("恭喜你赢了" + "\n" + "用时" + i );
     }
 }
 
