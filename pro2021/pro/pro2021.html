@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <title>在线扫雷星空精简版</title>
+    </head>
+    <body background="1.jpeg">
+        <div>
+            <div style="margin-top: o.8em;">
+                <b>
+                   <span>在线扫雷</span>
+                </b>
+            </div>
+            <div id="operation" >
+                <fieldset ba>
+                    <legend>难度选择：</legend>
+                    <div>
+                    <button onclick="myold()"  class="btn" id = "start">重新开始</button>              
+                    <button onclick = "myFunction(8,15,25)"  class="btn" id="level"  value="初级(10*10)" style='float:right'>初级(8*15)</button>
+                    <label for="llevel"></label>                 
+                    <button onclick = "myFunction(10,15,70)"  class="btn" id="level"  value="中级(15*15)"style='float:right'>中级(10*15)</button>
+                    <label for="mlevel"></label>
+                    <button onclick = "myFunction(15,30,300)"  class="btn" id="level"  value="高级(20*20)" style='float:right;'>高级(15*30)</button>
+                    <label for="hlevel"></label>
+                    </div>
+                    &#x0000A;
+                    <div style="text-align:left;" class= 'button'>
+                        <input type="button" id="timeValue"  value = "0秒" style="pointer-events: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" id="restTunder"  value = "0个" style="float: right;pointer-events: none;">&nbsp;
+                    </div>                
+                </fieldset>
+            </div>
+             
+
+            <div class="Game-pane">
+                <table id="board" style="align-items: center;justify-content: center;">
+
+                </table>
+            </div>
+            <div class="tip" style="color: crimson;">
+                提示:
+                <ul>
+                   <li>0、点击“重新开始”将清空计时</li>
+                   <li>1、点击“初级/中级/高级”游戏开始计时</li>
+                   <li>2、游戏过程中重新点击“初级/中级/高级”将开始新游戏</li>
+                </ul>
+              </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
