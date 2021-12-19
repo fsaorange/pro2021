@@ -90,7 +90,10 @@ function Renderboard(numRows,numCols,numbines,grid){
             trEl.append(tdEl);
 
             cellEl.oncontextmenu =function(){
-                insertFlag(i,j,numbines,grid);
+
+               insertFlag(i,j,numbines,grid);
+                
+                
                 return false;
             }
         }
@@ -99,6 +102,16 @@ function Renderboard(numRows,numCols,numbines,grid){
     }
 }
 
+function outFlag(CRow,CRow,grid) {
+    grid[CRow][CCol].flag = false;
+    let cellbackground =document.getElementById(CRow + '_' + CCol);
+    let imgEl1 = document.createElement("img2");
+    imgEl1.classList.add('imgEl1')
+    cellbackground.append (imgEl1)
+    let i =parseInt(document.getElementById('restTunder').value);
+    i += 1;
+    document.getElementById('restTunder').value =  i +'个';
+}
 
 //方向
 const directions=[
@@ -374,7 +387,7 @@ function myFunction(num1,num2,num3) {
 
 var second = 0
 function myold(){
-    location.reload();
+     location.reload();
 }
 
 function resetTimer() {
